@@ -45,26 +45,4 @@ jobs:
         PERSONAL_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_REPOSITORY: BruceZhang-utf-8/BruceZhang-utf-8.github.io # The repository the action should deploy to.
         BRANCH: main  # The branch the action should deploy to.
-        PUBLISH_DIR: ./public # The folder the action should deploy.          mkdir -p ~/.ssh/
-          echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-          # coding 已取消同步
-          ssh-keyscan -t rsa e.coding.net >> ~/.ssh/known_hosts
-          ssh-keyscan -t rsa gitee.com >> ~/.ssh/known_hosts
-          git config --global user.name $GIT_USER
-          git config --global user.email $GIT_EMAIL
-
-      - name: Install dependencies
-        run: |
-          npm install hexo-cli -g
-          npm install
-		  # 根据你安装的组件进行安装
-          npm uninstall hexo-generator-index --save
-          npm install hexo-baidu-url-submit hexo-generator-index2 hexo-symbols-count-time hexo-blog-encrypt hexo-deployer-git --save
-          # 复制中文语言包，解决菜单英文的问题
-          cp zh-CN.yml node_modules/hexo-theme-next/languages/
-
-      - name: Deploy hexo
-        run: |
-          npm run deploy
+        PUBLISH_DIR: ./public # The folder the action should deploy.
