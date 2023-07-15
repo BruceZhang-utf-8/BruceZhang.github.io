@@ -104,5 +104,5 @@ theme: hexo-theme-matery
 deploy:
   type: 'git'
   repo: 'git@github.com:BruceZhang-utf-8/BruceZhang-utf-8.github.io.git'
-  branch: 'main'
+  branch: 'gh-pages'
   message: ${{ github.event.head_commit.message }}  
