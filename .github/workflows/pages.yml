@@ -1,62 +1,51 @@
-# Action 的名字
-name: Hexo Auto Deploy
-
+name: GitHub Actions Build and Deploy
 on:
-  # 触发条件1：master 分支收到 push 后执行任务。
   push:
     branches:
+
       - master
-  # 触发条件2：手动按钮
-  workflow_dispatch:
-
-# 这里放环境变量,需要替换成你自己的
-env:
-  # Hexo 编译后使用此 git 用户部署到 github 仓库
-  GIT_USER: BruceZhang
-  # Hexo 编译后使用此 git 邮箱部署到 github 仓库
-  GIT_EMAIL: zhangzanwu5@163.com
-  # Hexo 编译后要部署的 github 仓库
-  GIT_DEPLOY_REPO: BruceZhang-utf-8/BruceZhang-utf-8.github.io
-  # Hexo 编译后要部署到的分支
-  GIT_DEPLOY_BRANCH: main
-  
-  
-  # 注意替换为你的 GitHub 源仓库地址
-  GIT_SOURCE_REPO: git@github.com:BruceZhang-utf-8/BruceZhang-utf-8.github.io.git
-
 
 jobs:
-  build:
-    name: Build on node ${{ matrix.node_version }} and ${{ matrix.os }}
+  build-and-deploy:
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
-    strategy:
-      matrix:
-        os: [ubuntu-18.04]
-        node_version: [18.x]
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
 
-      - name: Checkout deploy repo
-        uses: actions/checkout@v2
-        with:
-          repository: ${{ env.GIT_DEPLOY_REPO }}
-          ref: ${{ env.GIT_DEPLOY_BRANCH }}
-          path: .deploy_git
+    - name: 1. git checkout...
 
-      - name: Use Node.js ${{ matrix.node_version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node_version }}
+      uses: actions/checkout@v1
 
-      - name: Configuration environment
-        env:
-          HEXO_DEPLOY_PRI: ${{secrets.HEXO_DEPLOY_PRI}}
-        run: |
-          sudo timedatectl set-timezone "Asia/Shanghai"
-          mkdir -p ~/.ssh/
+    - name: 2. setup nodejs...
+
+      uses: actions/setup-node@v1
+
+    - name: 3. install hexo...
+
+      run: |
+        npm install hexo-cli -g
+        npm i -S hexo-prism-plugin -g
+        npm install hexo-generator-search --save -g
+        npm i hexo-permalink-pinyin  -g
+        npm i --save hexo-wordcount -g
+        npm install hexo-filter-github-emojis  -g
+        npm install hexo-generator-feed  -g
+        npm install
+
+    - name: 4. hexo generate public files...
+
+      run: |
+        hexo clean
+        hexo g
+    
+    # 提交到我们的存放静态资源的仓库
+
+    - name: Build and Deploy
+
+      uses: y4code/hexo-deploy-action@main
+      env:
+        PERSONAL_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_REPOSITORY: BruceZhang-utf-8/BruceZhang-utf-8.github.io # The repository the action should deploy to.
+        BRANCH: main  # The branch the action should deploy to.
+        PUBLISH_DIR: ./public # The folder the action should deploy.          mkdir -p ~/.ssh/
           echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
