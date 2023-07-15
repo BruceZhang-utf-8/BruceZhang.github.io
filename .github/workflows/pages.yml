@@ -1,69 +1,81 @@
-name: Deploy
+# Action 的名字
+name: Hexo Auto Deploy
 
 on:
+  # 触发条件1：master 分支收到 push 后执行任务。
   push:
     branches:
-      - master  # default branch
+      - master
+  # 触发条件2：手动按钮
+  workflow_dispatch:
+
+# 这里放环境变量,需要替换成你自己的
+env:
+  # Hexo 编译后使用此 git 用户部署到 github 仓库
+  GIT_USER: BruceZhang
+  # Hexo 编译后使用此 git 邮箱部署到 github 仓库
+  GIT_EMAIL: zhangzanwu5@163.com
+  # Hexo 编译后要部署的 github 仓库
+  GIT_DEPLOY_REPO: BruceZhang-utf-8/BruceZhang-utf-8.github.io
+  # Hexo 编译后要部署到的分支
+  GIT_DEPLOY_BRANCH: main
+  
+  
+  # 注意替换为你的 GitHub 源仓库地址
+  GIT_SOURCE_REPO: git@github.com:BruceZhang-utf-8/BruceZhang-utf-8.github.io.git
+
+
 jobs:
-  # 子任务
-  pages:
-    runs-on: ubuntu-latest # 定运行所需要的虚拟机环境
-    permissions:
-      contents: write
+  build:
+    name: Build on node ${{ matrix.node_version }} and ${{ matrix.os }}
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    strategy:
+      matrix:
+        os: [ubuntu-18.04]
+        node_version: [18.x]
+
     steps:
-      - uses: actions/checkout@v2
-        # with:
-        #   submodules: true
-        #   fetch-depth: 0
-      # 每个name表示一个步骤:step
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Checkout deploy repo
+        uses: actions/checkout@v2
         with:
-          node-version: '18.14.2' # 自己正在使用的node版本即可
-      # - run: node -v # 查看node版本号
-      # 缓存依赖项: https://docs.github.com/cn/actions/using-workflows/caching-dependencies-to-speed-up-workflows
-      - name: Cache NPM dependencies
-        uses: actions/cache@v2
+          repository: ${{ env.GIT_DEPLOY_REPO }}
+          ref: ${{ env.GIT_DEPLOY_BRANCH }}
+          path: .deploy_git
+
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
         with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: ~/.npm
-          # path: node_modules
-          key: ${{ runner.OS }}-npm-cache
-          restore-keys: |
-            ${{ runner.OS }}-npm-cache
-      # 查看路径 : /home/runner/work/blog/blog
-      # - name: Look Path
-      #   run: pwd
-      # 查看文件
-      - name: Look Dir List
-        run: tree -L 3 -a
-      # 第一次或者依赖发生变化的时候执行 Install Dependencies，其它构建的时候不需要这一步
-      - name: Install Dependencies
-        run: npm install
-      - name: Look Dir List
-        run: tree -L 3 -a
-      # - name: clean theme cache
-      #   run: git rm -f --cached themes/tenacity
-        # run: git submodule deinit themes/tenacity && git rm themes/tenacity
-      # 安装主题
-      - name: Clean
-        run: npm run clean
-      - name: Build
-        run: npm run build
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY  }}
-          user_name: BruceZhang
-          user_email: zhangzanwu5@163.com
-          # 获取提交文章源码时的commit message，作为发布main分支的信息
-          commit_message: ${{ github.event.head_commit.message }}
-          full_commit_message: ${{ github.event.head_commit.message }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # GITHUB_TOKEN不是个人访问令牌，GitHub Actions 运行器会自动创建一个GITHUB_TOKEN密钥以在您的工作流程中进行身份验证。因此，您无需任何配置即可立即开始部署
-          publish_dir: ./public
-          allow_empty_commit: true # 允许空提交
-      # Use the output from the `deploy` step(use for test action)
-      - name: Get the output
+          node-version: ${{ matrix.node_version }}
+
+      - name: Configuration environment
+        env:
+          HEXO_DEPLOY_PRI: ${{secrets.HEXO_DEPLOY_PRI}}
         run: |
-          echo "${{ steps.deploy.outputs.notify }}"
+          sudo timedatectl set-timezone "Asia/Shanghai"
+          mkdir -p ~/.ssh/
+          echo "$HEXO_DEPLOY_PRI" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+          # coding 已取消同步
+          ssh-keyscan -t rsa e.coding.net >> ~/.ssh/known_hosts
+          ssh-keyscan -t rsa gitee.com >> ~/.ssh/known_hosts
+          git config --global user.name $GIT_USER
+          git config --global user.email $GIT_EMAIL
+
+      - name: Install dependencies
+        run: |
+          npm install hexo-cli -g
+          npm install
+		  # 根据你安装的组件进行安装
+          npm uninstall hexo-generator-index --save
+          npm install hexo-baidu-url-submit hexo-generator-index2 hexo-symbols-count-time hexo-blog-encrypt hexo-deployer-git --save
+          # 复制中文语言包，解决菜单英文的问题
+          cp zh-CN.yml node_modules/hexo-theme-next/languages/
+
+      - name: Deploy hexo
+        run: |
+          npm run deploy
