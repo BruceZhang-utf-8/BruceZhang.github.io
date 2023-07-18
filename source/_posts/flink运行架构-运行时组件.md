@@ -1,4 +1,4 @@
----
+﻿---
 title: flink运行架构-运行时组件
 date: 2023-07-16 22:57:51
 categories:
@@ -9,7 +9,6 @@ tags:
 ---
 
 # flink 运行时组件
-![Alt text](2023-07-16-23-10-30.png)
 
 ## 作业管理器（JobManager）
 + 控制一个应用程序执行的主进程，每一个应用程序都会被一个不同的JobManager所控制执行
