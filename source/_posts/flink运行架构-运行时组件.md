@@ -29,7 +29,7 @@ tags:
 + flink为不同的环境和资源管理工具提供了不同的资源管理器，比如Yarn,Mesos,K8s以及standalone部署。
 + 当JobManager申请插槽资源时，ResouceManager会将有空闲插槽的TaskManager分配给JobManager。如果ResourceManager没有足够的插槽来满足JobManager的请求，它还可以向资源平台发起会话，以提供启动TaskManager进程的容器。
 
-## 分发器
+## 分发器（Dispatcher）
 + 可以跨作业运行，它为应用提交提供了REST接口。
 + 当一个应用被提交执行时，分发器就会启动并将应用移交给一个JobManager。
 + Dispatcher也会启动一个Web UI，用来方便地展示和监控作业执行的信息。
