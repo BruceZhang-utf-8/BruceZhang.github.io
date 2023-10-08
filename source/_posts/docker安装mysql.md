@@ -84,6 +84,14 @@ flush privileges;
 docker exec -it mysql /bin/bash
 ```
 
+## 6.设置自动启动
+
+```
+docker update --restart=always mysql(容器id或容器名)
+```
+
+
+
 
 
 
