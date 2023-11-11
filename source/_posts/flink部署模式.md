@@ -2,10 +2,10 @@
 title: flink部署模式
 date: 2023-11-11 14:30:22
 tags:
+ - flink部署模式
+categories:
  - 大数据
  - flink
-categories:
- - flink部署模式
 ---
 
 # flink 部署模式
