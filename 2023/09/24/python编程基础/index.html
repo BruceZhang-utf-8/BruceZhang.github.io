@@ -1,0 +1,1536 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="python编程基础, 数维杂谈">
+    <meta name="description" content="python编程基础一 变量1.1 变量的定义变量就是可变的量，对于一些有可能会经常变化的数据，我们需要使用一个符号，这样才能计算中使用它，就像我们学过的一元方程中的”x”一样
+1.2 变量名规则在Python中，变量名遵循以下的规则：
+
+">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>python编程基础 | 数维杂谈</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">数维杂谈</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">数维杂谈</div>
+        <div class="logo-desc">
+            
+            凡是到达了的地方，都属于昨天
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">python编程基础</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/python/">
+                                <span class="chip bg-color">python</span>
+                            </a>
+                        
+                            <a href="/tags/python%E5%9F%BA%E7%A1%80/">
+                                <span class="chip bg-color">python基础</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/python/" class="post-category">
+                                python
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-09-24
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-09-24
+                </div>
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="python编程基础"><a href="#python编程基础" class="headerlink" title="python编程基础"></a>python编程基础</h1><h2 id="一-变量"><a href="#一-变量" class="headerlink" title="一 变量"></a>一 变量</h2><h3 id="1-1-变量的定义"><a href="#1-1-变量的定义" class="headerlink" title="1.1 变量的定义"></a>1.1 变量的定义</h3><p>变量就是可变的量，对于一些有可能会经常变化的数据，我们需要使用一个符号，这样才能计算中使用它，就像我们学过的一元方程中的”x”一样</p>
+<h3 id="1-2-变量名规则"><a href="#1-2-变量名规则" class="headerlink" title="1.2 变量名规则"></a>1.2 变量名规则</h3><p>在Python中，变量名遵循以下的规则：</p>
+<ul>
+<li>变量名由字母、数字和下划线组成，也就是a-z, A-Z, 0-9和_</li>
+<li>变量名不能以数字开头</li>
+<li>变量名是区分大小写的，比如a 和 A就是两个不同的变量。</li>
+</ul>
+<p>在此基础上，也约定了一些变量名的命名规范。比如：</p>
+<ul>
+<li><p>普通变量一般用小写字母</p>
+</li>
+<li><p>最好不要用单词加数字的方式来命名变量，尤其是没有意义的随机数字。</p>
+</li>
+<li><p>有两种风格的变量名：单词之间用下划线隔开；每个单词的首字母使用大写字母（也称为驼峰命名法）</p>
+</li>
+</ul>
+<h3 id="1-3-关键字"><a href="#1-3-关键字" class="headerlink" title="1.3 关键字"></a>1.3 关键字</h3><p>以下的这些单词都是Python的关键字，每个编程语言都有各自的关键字，它们组成了编程语言基本的语法规则。在命名变量的时候避免使用这些名字。</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token boolean">False</span> <span class="token keyword">await</span> <span class="token keyword">else</span> <span class="token keyword">import</span> <span class="token keyword">pass</span>
+<span class="token boolean">None</span> <span class="token keyword">break</span> <span class="token keyword">except</span> <span class="token keyword">in</span> <span class="token keyword">raise</span>
+<span class="token boolean">True</span> <span class="token keyword">class</span> <span class="token class-name">finally</span> <span class="token keyword">is</span> <span class="token keyword">return</span>
+<span class="token keyword">and</span> <span class="token keyword">continue</span> <span class="token keyword">for</span> <span class="token keyword">lambda</span> <span class="token keyword">try</span>
+<span class="token keyword">as</span> <span class="token keyword">def</span> <span class="token keyword">from</span> <span class="token keyword">nonlocal</span> <span class="token keyword">while</span>
+<span class="token keyword">assert</span> <span class="token keyword">del</span> <span class="token keyword">global</span> <span class="token keyword">not</span> <span class="token keyword">with</span>
+<span class="token keyword">async</span> <span class="token keyword">elif</span> <span class="token keyword">if</span> <span class="token keyword">or</span> <span class="token keyword">yield</span></code></pre>
+
+<p>如果你一不小心定义了一个与关键字相同的变量，代码会在运行的时候报错。比如：</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token boolean">True</span> <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token comment"># 上面这行代码运行会输出下面的信息，提示不能给关键字赋值。</span>
+<span class="token comment"># File "&lt;stdin>", line 1</span>
+<span class="token comment"># SyntaxError: can't assign to keyword</span></code></pre>
+
+<h3 id="1-4-变量赋值"><a href="#1-4-变量赋值" class="headerlink" title="1.4 变量赋值"></a>1.4 变量赋值</h3><p>变量是可以重复使用，并且是可以修改的，由于Python的变量不需要先声明，所以变量的声明和赋值是在同一行代码完成的</p>
+<pre class="language-python" data-language="python"><code class="language-python">name <span class="token operator">=</span> <span class="token string">"Bruce"</span></code></pre>
+
+<p>变量必须要先声明，才能使用。如果使用了一个从未定义过的变量xxx，Python解释器会抛给你一个这样的错误：</p>
+<pre class="language-python" data-language="python"><code class="language-python">NameError<span class="token punctuation">:</span> name <span class="token string">'xxx'</span> <span class="token keyword">is</span> <span class="token keyword">not</span> defined</code></pre>
+
+<p>有时候，我们需要定义好几个变量，以进行计算。比如定义三个变量，并把它们的值都设为1，可以这样写：</p>
+<pre class="language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> b <span class="token operator">=</span> c <span class="token operator">=</span> <span class="token number">1</span></code></pre>
+
+<p>这样就定义三个变量，且它们的初始值都是1，那如果定义的三个变量值不同</p>
+<pre class="language-none"><code class="language-none">a, b, c &#x3D; 1, 2, 3</code></pre>
+
+<p>同时给多个变量赋予不同的值，还可以交换几个变量的值</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 定义两个变量，其中a=1, b=2</span>
+a<span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span>
+<span class="token comment"># 进行交换，现在a=2, b=1</span>
+a<span class="token punctuation">,</span> b <span class="token operator">=</span> b<span class="token punctuation">,</span> a</code></pre>
+
+<h3 id="1-5-变量的销毁"><a href="#1-5-变量的销毁" class="headerlink" title="1.5 变量的销毁"></a>1.5 变量的销毁</h3><p>在Python中，我们一般无需手动的去销毁变量，Python的垃圾回收机制会帮我们处理掉那些不再使用的变量，如果我们想刻意销毁删除某个变量，可以使用del关键字</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">del</span> name</code></pre>
+
+<h2 id="二-数据类型"><a href="#二-数据类型" class="headerlink" title="二 数据类型"></a>二 数据类型</h2><p>变量在Python中是不区分类型的，但它的值有类型，不同的值有不同的类型，三种基本的数据类型：</p>
+<ul>
+<li><p>数值，包括整数和浮点数</p>
+</li>
+<li><p>字符串</p>
+</li>
+<li><p>布尔值</p>
+</li>
+</ul>
+<h3 id="2-1-数值"><a href="#2-1-数值" class="headerlink" title="2.1 数值"></a>2.1 数值</h3><p>Python中数值有两种类型，整形(int)和浮点型(float)，通俗一点的讲，一个是不带小数点的，一个带小数点的。</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 这是一个整形</span>
+a <span class="token operator">=</span> <span class="token number">100</span>
+<span class="token comment"># 这是一个浮点型变量</span>
+b <span class="token operator">=</span> <span class="token number">3.14</span></code></pre>
+
+<p>整形和浮点形数值可以相互运算</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># c是一个浮点型变量</span>
+c <span class="token operator">=</span> a <span class="token operator">+</span> b</code></pre>
+
+<p>只要有浮点数参与的运算，它的结果肯定也是浮点数</p>
+<h3 id="2-2-字符串"><a href="#2-2-字符串" class="headerlink" title="2.2 字符串"></a>2.2 字符串</h3><pre class="language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> <span class="token string">"Hello world"</span></code></pre>
+
+<p>如果字符串含有特殊字符，比如双引号，可以加 反斜杠 \ 来进行转义</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Bruce: \"What we think, we become.\""</span><span class="token punctuation">)</span>
+
+\# 输出的结果是：Bruce<span class="token punctuation">:</span> <span class="token string">"What we think, we become."</span></code></pre>
+
+<p>如果使用单引号，就不需要使用反斜杠\</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Bruce: "What we think, we become."'</span><span class="token punctuation">)</span></code></pre>
+
+<p>如果要定义的字符串比较长，超出了一行的长度，在编写的时候使用一个反斜杠 \ 来连接多行：</p>
+<pre class="language-python" data-language="python"><code class="language-python">sentence <span class="token operator">=</span> "This's a very <span class="token builtin">long</span> <span class="token builtin">long</span> <span class="token builtin">long</span> \
+<span class="token builtin">long</span> <span class="token builtin">long</span> sentence<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>"
+<span class="token keyword">print</span><span class="token punctuation">(</span>sentence<span class="token punctuation">)</span></code></pre>
+
+<p>上面的代码在输出的时候还是会显示为一整行。如果说还有更长的字符串，类似一整段话，可以使用三引号</p>
+<pre class="language-python" data-language="python"><code class="language-python">zen <span class="token operator">=</span> <span class="token triple-quoted-string string">"""Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense."""</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>zen<span class="token punctuation">)</span></code></pre>
+
+<p><img src="/python%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/image-20230924150028409.png" alt="image-20230924150028409"></p>
+<p>也可以使用单个单引号。</p>
+<h3 id="2-3-布尔值"><a href="#2-3-布尔值" class="headerlink" title="2.3 布尔值"></a>2.3 布尔值</h3><p>布尔值只有两个值: True 和 False，True代表真，False代表假，我们用布尔值一般是用来做条件判断。在Python3中，True和False是关键字，所以我们不能定义为变量名。</p>
+<h3 id="2-4-空值None"><a href="#2-4-空值None" class="headerlink" title="2.4 空值None"></a>2.4 空值None</h3><p>空值None是Python中的一个特殊值，它代表空值，表示“什么都没有”，None同时也是关键字。None的用处有很多，比如说你想定义一个变量，但还没想好给它赋什么值，甚至连它用什么类型也没决定好，可以先用None</p>
+<pre class="language-python" data-language="python"><code class="language-python">name<span class="token operator">=</span><span class="token boolean">None</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span></code></pre>
+
+<p><img src="/python%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/image-20230924150304748.png" alt="image-20230924150304748"></p>
+<p>None被输出的时候显示为一个字符串”None”</p>
+<h3 id="2-5-类型转化"><a href="#2-5-类型转化" class="headerlink" title="2.5 类型转化"></a>2.5 类型转化</h3><h4 id="2-5-1-布尔值转换"><a href="#2-5-1-布尔值转换" class="headerlink" title="2.5.1 布尔值转换"></a>2.5.1 布尔值转换</h4><p>想把其他值转换为布尔值，需要使用一个内置函数bool()</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 以下值都为True</span>
+<span class="token builtin">bool</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token builtin">bool</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token builtin">bool</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span>
+<span class="token builtin">bool</span><span class="token punctuation">(</span><span class="token number">0.0000001</span><span class="token punctuation">)</span>
+<span class="token builtin">bool</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">99.99</span><span class="token punctuation">)</span>
+<span class="token comment"># 下面的值为False</span>
+<span class="token builtin">bool</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token builtin">bool</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">)</span></code></pre>
+
+<p><strong>总结：对于数值类型，所有非0值转化为True,只有0值被转化为False</strong></p>
+<p>字符串也可以转化为布尔值</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 这是一个空字符串，转换结果为False</span>
+<span class="token builtin">bool</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
+<span class="token comment"># 转换结果为True</span>
+<span class="token builtin">bool</span><span class="token punctuation">(</span><span class="token string">"abc"</span><span class="token punctuation">)</span>
+<span class="token comment"># 这是一个只包含一个空格的字符串，转换结果为为True</span>
+<span class="token builtin">bool</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span></code></pre>
+
+<p><strong>总结：对于任何非空的字符串，转化为布尔值都是True,只有一个空格的字符串转化后为True</strong></p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 结果为False</span>
+<span class="token builtin">bool</span><span class="token punctuation">(</span><span class="token boolean">None</span><span class="token punctuation">)</span></code></pre>
+
+<p><strong>总结：空值转换为布尔值永远都是False</strong></p>
+<h4 id="2-5-2-字符串转换"><a href="#2-5-2-字符串转换" class="headerlink" title="2.5.2 字符串转换"></a>2.5.2 字符串转换</h4><p>使用str() 将其他类型转换为字符串</p>
+<p>True, False, None 这三个值转换为字符串就是它们的单词本身，实际上在实际编程中，我们很少需要把它们转换成字符串来使用。</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token builtin">str</span><span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token comment"># 结果是'True'</span>
+<span class="token builtin">str</span><span class="token punctuation">(</span><span class="token boolean">False</span><span class="token punctuation">)</span> <span class="token comment"># 结果是'False'</span>
+<span class="token builtin">str</span><span class="token punctuation">(</span><span class="token boolean">None</span><span class="token punctuation">)</span> <span class="token comment"># 结果是'None'</span></code></pre>
+
+<p>对于数值类型，我们也可以用str()将它们转换为字符串</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"My age is"</span><span class="token punctuation">,</span> <span class="token builtin">str</span><span class="token punctuation">(</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+
+<p>在这个例子中，如果不进行强制转换的话，也不会出错，那是因为，print函数会自动将数值先转换成字符串再输出。</p>
+<h4 id="2-5-3-数值转换"><a href="#2-5-3-数值转换" class="headerlink" title="2.5.3 数值转换"></a>2.5.3 数值转换</h4><p>要把一个整数字符串转换为int类型，使用int()；</p>
+<pre class="language-python" data-language="python"><code class="language-python">num <span class="token operator">=</span> <span class="token string">"1"</span>
+<span class="token builtin">int</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span></code></pre>
+
+<p>如果将int()去掉，这段代码则会报错，因为num是个字符串，不能将字符串和数值进行相加。</p>
+<p>数值的前后带有空格也可以成功转换</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token string">" 100 "</span><span class="token punctuation">)</span> <span class="token comment"># 结果为100</span></code></pre>
+
+<p>带有符号的数字也可以成功转换</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token string">"-1"</span><span class="token punctuation">)</span> <span class="token comment"># 结果为-1</span>
+<span class="token builtin">int</span><span class="token punctuation">(</span><span class="token string">"+1"</span><span class="token punctuation">)</span> <span class="token comment"># 结果为1</span></code></pre>
+
+<p>要把一个带小数点的字符串转换为float类型，使用float()</p>
+<pre class="language-python" data-language="python"><code class="language-python">pi <span class="token operator">=</span> <span class="token string">"3.1415926"</span>
+<span class="token builtin">float</span><span class="token punctuation">(</span>pi<span class="token punctuation">)</span></code></pre>
+
+<p>int类型和float类型之间也可以相互转换</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token number">3.14</span><span class="token punctuation">)</span> <span class="token comment">#结果为3</span>
+<span class="token builtin">int</span><span class="token punctuation">(</span><span class="token number">9.9</span><span class="token punctuation">)</span> <span class="token comment"># 结果为9</span>
+<span class="token builtin">float</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token comment"># 结果为100.0</span></code></pre>
+
+<p>但float在被转换为int的过程中，它的小数部分精度将被丢弃，只取整数部分,向下取整。</p>
+<p>四舍五入的来转换，Python给我们提供了一个内置函数：round</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token builtin">round</span><span class="token punctuation">(</span><span class="token number">9.9</span><span class="token punctuation">)</span> <span class="token comment">#结果为10</span>
+<span class="token builtin">round</span><span class="token punctuation">(</span><span class="token number">9.5</span><span class="token punctuation">)</span> <span class="token comment">#结果为10</span>
+<span class="token builtin">round</span><span class="token punctuation">(</span><span class="token number">9.49</span><span class="token punctuation">)</span> <span class="token comment">#结果为9</span></code></pre>
+
+<p>round函数让我们可以指定要保留小数点后几位：</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 保留小数点后两位，由于第三位是1，所以结果是3.14</span>
+<span class="token builtin">round</span><span class="token punctuation">(</span><span class="token number">3.1415926</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token comment"># 保留小数点后三位，由于第四位是5，所以结果是3.142</span>
+<span class="token builtin">round</span><span class="token punctuation">(</span><span class="token number">3.1415926</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span></code></pre>
+
+<p>布尔值也可以转换为int或者float</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token builtin">int</span><span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token comment"># 结果是1</span>
+<span class="token builtin">int</span><span class="token punctuation">(</span><span class="token boolean">False</span><span class="token punctuation">)</span> <span class="token comment"># 结果是0</span>
+<span class="token builtin">float</span><span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token comment"># 结果是1.0</span>
+<span class="token builtin">float</span><span class="token punctuation">(</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token comment"># 结果是0.0</span></code></pre>
+
+<h2 id="三-运算符"><a href="#三-运算符" class="headerlink" title="三 运算符"></a>三 运算符</h2><h3 id="3-1-算数运算符"><a href="#3-1-算数运算符" class="headerlink" title="3.1 算数运算符"></a>3.1 算数运算符</h3><table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">描述</th>
+<th align="center">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+</td>
+<td align="center">加</td>
+<td align="center">1 + 1; a + b</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">减</td>
+<td align="center">10 - 5; a - b -c</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">乘</td>
+<td align="center">4 * 2 相当 4 × 2</td>
+</tr>
+<tr>
+<td align="center">&#x2F;</td>
+<td align="center">除</td>
+<td align="center">4 &#x2F; 2 相当于 4 ÷ 2</td>
+</tr>
+<tr>
+<td align="center">&#x2F;&#x2F;</td>
+<td align="center">取整除</td>
+<td align="center">10 &#x2F;&#x2F; 4 结果是 2</td>
+</tr>
+<tr>
+<td align="center">%</td>
+<td align="center">取模</td>
+<td align="center">10 % 4 相当于 10 - (10 &#x2F;&#x2F; 4) × 4</td>
+</tr>
+<tr>
+<td align="center">**</td>
+<td align="center">指数</td>
+<td align="center">2 ** 3 相当于 2 * 2 * 2，也就是2的3次方</td>
+</tr>
+<tr>
+<td align="center">()</td>
+<td align="center">小括号</td>
+<td align="center">提高运算优先级，比如: (2 + 8) * 3</td>
+</tr>
+</tbody></table>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">10</span> <span class="token operator">-</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">4</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">4</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment"># 结果是2.0</span></code></pre>
+
+<p><strong>注意：即使除数和被除数都是整数，它的返回结果也是一个浮点数</strong></p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment"># 结果是2.5</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">//</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment"># 结果是2</span></code></pre>
+
+<p>取模运算符可以理解为取余数，记住以下几个规则：</p>
+<ul>
+<li><p>当两个数能整除时，取模运算的结果为0，比如 8 % 4 的结果是0</p>
+</li>
+<li><p>当0&lt;a&lt;b时，a % b &#x3D; a，比如 3 % 8 的结果是3</p>
+</li>
+<li><p>当两个数中有负数时,记住这个公式 ：a % b 就相当于a - (a &#x2F;&#x2F; b) * b</p>
+</li>
+</ul>
+<p>最后，提醒一下，<strong>0不能作为除数，也不能用来取模</strong>。</p>
+<h3 id="3-2-使用算数运算符操作字符串"><a href="#3-2-使用算数运算符操作字符串" class="headerlink" title="3.2 使用算数运算符操作字符串"></a>3.2 使用算数运算符操作字符串</h3><p>加法</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Hello "</span> <span class="token operator">+</span> <span class="token string">"world"</span><span class="token punctuation">)</span></code></pre>
+
+<p>乘法</p>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"apple "</span> <span class="token operator">*</span> <span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token comment">#输出：</span>
+apple apple apple apple apple </code></pre>
+
+<h3 id="3-3-赋值运算符"><a href="#3-3-赋值运算符" class="headerlink" title="3.3 赋值运算符"></a>3.3 赋值运算符</h3><pre class="language-python" data-language="python"><code class="language-python">num <span class="token operator">=</span> <span class="token number">1</span>
+name <span class="token operator">=</span> <span class="token string">"Smith"</span></code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">描述</th>
+<th align="center">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+&#x3D;</td>
+<td align="center">加法赋值运算符</td>
+<td align="center">c +&#x3D; a 等效于 c &#x3D; c + a</td>
+</tr>
+<tr>
+<td align="center">-&#x3D;</td>
+<td align="center">减法赋值运算符</td>
+<td align="center">c -&#x3D; a 等效于 c &#x3D; c - a</td>
+</tr>
+<tr>
+<td align="center">*&#x3D;</td>
+<td align="center">乘法赋值运算符</td>
+<td align="center">c *&#x3D; a 等效于 c &#x3D; c * a</td>
+</tr>
+<tr>
+<td align="center">&#x2F;&#x3D;</td>
+<td align="center">除法赋值运算符</td>
+<td align="center">c &#x2F;&#x3D; a 等效于 c &#x3D; c &#x2F; a</td>
+</tr>
+<tr>
+<td align="center">&#x2F;&#x2F;&#x3D;</td>
+<td align="center">取整除赋值运算符</td>
+<td align="center">c &#x2F;&#x2F;&#x3D; a 等效于 c &#x3D; c &#x2F;&#x2F; a</td>
+</tr>
+<tr>
+<td align="center">%&#x3D;</td>
+<td align="center">取模赋值运算符</td>
+<td align="center">c %&#x3D; a 等效于 c &#x3D; c % a</td>
+</tr>
+<tr>
+<td align="center">**&#x3D;</td>
+<td align="center">幂赋值运算符</td>
+<td align="center">c <strong>&#x3D; a</strong> <strong>等效于</strong> <strong>c &#x3D; c</strong> a</td>
+</tr>
+</tbody></table>
+<h3 id="3-4-比较运算符"><a href="#3-4-比较运算符" class="headerlink" title="3.4 比较运算符"></a>3.4 比较运算符</h3><p>比较运算符是用来运算布尔值的， 将两个值放在一起比较，最后得到True或者False。</p>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">描述</th>
+<th align="center">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&#x3D;&#x3D;</td>
+<td align="center">等于</td>
+<td align="center">100 &#x3D;&#x3D; 100</td>
+</tr>
+<tr>
+<td align="center">!&#x3D;</td>
+<td align="center">不等于</td>
+<td align="center">100 !&#x3D; 99</td>
+</tr>
+<tr>
+<td align="center">&gt;</td>
+<td align="center">大于</td>
+<td align="center">2 &gt; 1</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+<td align="center">小于</td>
+<td align="center">1 &lt; 2</td>
+</tr>
+<tr>
+<td align="center">&gt;&#x3D;</td>
+<td align="center">大于等于</td>
+<td align="center">3 &gt;&#x3D; 2</td>
+</tr>
+<tr>
+<td align="center">&lt;&#x3D;</td>
+<td align="center">小于等于</td>
+<td align="center">2 &lt;&#x3D; 3</td>
+</tr>
+</tbody></table>
+<pre class="language-python" data-language="python"><code class="language-python"><span class="token number">100</span> <span class="token operator">==</span> <span class="token string">"100"</span> <span class="token comment"># False</span>
+<span class="token number">100</span> <span class="token operator">==</span> <span class="token number">50</span> <span class="token operator">*</span> <span class="token number">2</span> <span class="token comment"># True</span>
+<span class="token builtin">str</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"100"</span> <span class="token comment"># True</span>
+<span class="token number">1.0</span> <span class="token operator">!=</span> <span class="token number">1</span> <span class="token comment"># False</span>
+<span class="token builtin">int</span><span class="token punctuation">(</span><span class="token number">1.9</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span> <span class="token comment"># True</span></code></pre>
+
+<p><strong>数值100 和字符串”100”是不相等的</strong></p>
+<h3 id="3-5-逻辑运算符"><a href="#3-5-逻辑运算符" class="headerlink" title="3.5 逻辑运算符"></a>3.5 逻辑运算符</h3><p>逻辑运算符将多个比较运算连接起来</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>运算符</strong></th>
+<th align="center"><strong>逻辑表达式</strong></th>
+<th align="center"><strong>描述</strong></th>
+<th align="center">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">and</td>
+<td align="center">x and y</td>
+<td align="center">任意一个是False，结果就是False</td>
+<td align="center">True and False 结果为False</td>
+</tr>
+<tr>
+<td align="center">or</td>
+<td align="center">x or y</td>
+<td align="center">任意一个是True，结果就是True;</td>
+<td align="center">True or False 结果为True</td>
+</tr>
+<tr>
+<td align="center">not</td>
+<td align="center">not x</td>
+<td align="center">将条件取反</td>
+<td align="center">not False 结果为True</td>
+</tr>
+</tbody></table>
+<h2 id="四-流程控制"><a href="#四-流程控制" class="headerlink" title="四 流程控制"></a>四 流程控制</h2><h3 id="4-1-条件判断"><a href="#4-1-条件判断" class="headerlink" title="4.1 条件判断"></a>4.1 条件判断</h3><h4 id="4-1-1-if…else…语句"><a href="#4-1-1-if…else…语句" class="headerlink" title="4.1.1 if…else…语句"></a>4.1.1 if…else…语句</h4><pre class="language-python" data-language="python"><code class="language-python">num <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token comment"># 通过取模运算判断num是否能被2整除</span>
+<span class="token keyword">if</span> num <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"是一个偶数"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"是一个奇数"</span><span class="token punctuation">)</span></code></pre>
+
+
+
+<h4 id="4-1-2-elif"><a href="#4-1-2-elif" class="headerlink" title="4.1.2 elif"></a>4.1.2 elif</h4><pre class="language-python" data-language="python"><code class="language-python">score <span class="token operator">=</span> <span class="token number">59</span>
+<span class="token keyword">if</span> score <span class="token operator">&lt;</span> <span class="token number">60</span><span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"您的考试成绩不及格"</span><span class="token punctuation">)</span>
+<span class="token keyword">elif</span> score <span class="token operator">&lt;</span> <span class="token number">90</span><span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"您的考试成绩合格"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"您的考试成绩优秀"</span><span class="token punctuation">)</span></code></pre>
+
+<h4 id="4-1-3-if条件嵌套"><a href="#4-1-3-if条件嵌套" class="headerlink" title="4.1.3 if条件嵌套"></a>4.1.3 if条件嵌套</h4><pre class="language-python" data-language="python"><code class="language-python">score <span class="token operator">=</span> <span class="token number">100</span>
+<span class="token keyword">if</span> score <span class="token operator">>=</span> <span class="token number">60</span><span class="token punctuation">:</span>
+	<span class="token keyword">if</span> score <span class="token operator">&lt;</span> <span class="token number">70</span><span class="token punctuation">:</span>
+		<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"您的考试成绩为合格"</span><span class="token punctuation">)</span>
+	<span class="token keyword">elif</span> score <span class="token operator">&lt;</span> <span class="token number">90</span><span class="token punctuation">:</span>
+		<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"您的考试成绩为良好"</span><span class="token punctuation">)</span>
+	<span class="token keyword">else</span><span class="token punctuation">:</span>
+		<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"您的考试成绩为优秀"</span><span class="token punctuation">)</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"您的考试成绩不及格"</span><span class="token punctuation">)</span></code></pre>
+
+<h3 id="4-2-循环"><a href="#4-2-循环" class="headerlink" title="4.2 循环"></a>4.2 循环</h3><h4 id="4-2-1-while循环"><a href="#4-2-1-while循环" class="headerlink" title="4.2.1 while循环"></a>4.2.1 while循环</h4><pre class="language-python" data-language="python"><code class="language-python">lap <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">while</span> lap <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">:</span>
+lap <span class="token operator">+=</span> <span class="token number">1</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"我跑完了第"</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>lap <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"圈"</span><span class="token punctuation">)</span></code></pre>
+
+<h4 id="4-2-2-for循环"><a href="#4-2-2-for循环" class="headerlink" title="4.2.2 for循环"></a>4.2.2 for循环</h4><p>for循环可以用来遍历序列，序列指的是一个可迭代的有序的集合，比如字符串就是一个序列</p>
+<pre class="language-python" data-language="python"><code class="language-python">seq <span class="token operator">=</span> <span class="token string">"hello"</span>
+<span class="token keyword">for</span> s <span class="token keyword">in</span> seq<span class="token punctuation">:</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+<span class="token comment">#输出</span>
+h
+e
+l
+l
+o</code></pre>
+
+<h4 id="4-2-3-嵌套循环"><a href="#4-2-3-嵌套循环" class="headerlink" title="4.2.3 嵌套循环"></a>4.2.3 嵌套循环</h4><pre class="language-python" data-language="python"><code class="language-python"><span class="token comment"># 指定长方形的宽和高</span>
+width<span class="token punctuation">,</span> height <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">5</span>
+<span class="token comment"># 因为是从上往下开始打印，所以先遍历高度</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>height<span class="token punctuation">)</span><span class="token punctuation">:</span>
+	<span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>width<span class="token punctuation">)</span><span class="token punctuation">:</span>
+		<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>
+	<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+</code></pre>
+
+<h4 id="4-2-4-break和continue"><a href="#4-2-4-break和continue" class="headerlink" title="4.2.4 break和continue"></a>4.2.4 break和continue</h4><p>break — 跳出整个循环</p>
+<p>continue — 跳出当次循环</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">基督山伯爵</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://BruceZhang-utf-8.github.io/2023/09/24/python%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/">https://BruceZhang-utf-8.github.io/2023/09/24/python%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">基督山伯爵</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/python/">
+                                    <span class="chip bg-color">python</span>
+                                </a>
+                            
+                                <a href="/tags/python%E5%9F%BA%E7%A1%80/">
+                                    <span class="chip bg-color">python基础</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/09/25/python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="python数据结构">
+                        
+                        <span class="card-title">python数据结构</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-09-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/python/" class="post-category">
+                                    python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">python数据结构</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/09/23/pycharm%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="pycharm下载与安装">
+                        
+                        <span class="card-title">pycharm下载与安装</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/python/" class="post-category">
+                                    python
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/python/">
+                        <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/pycharm%E5%AE%89%E8%A3%85/">
+                        <span class="chip bg-color">pycharm安装</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023-2024</span>
+            
+            <a href="/about" target="_blank">基督山伯爵</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/BruceZhang-utf-8" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zhangzanwu5@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+     
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/star.js"><\/script>');
+            }
+        </script>
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
